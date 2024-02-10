@@ -1,24 +1,7 @@
--- FROM: Real World Haskell
-double a = a + a
-neg a = -a
-
-myDrop n xs =
-    if n <= 0 || null xs
-    then xs
-    else myDrop (n - 1) (tail xs)
-
-isOdd n =
-    mod n 2 == 1
-
-isEven n = not (isOdd n)
-
-lastButOne xs =
-    last (init xs)
-
 -- 
 -- Actual Work from CIS 194
 -- 
--- {-# OPTIONS_GHC -Wall #-} -- this would work for the below
+{-# OPTIONS_GHC -Wall -Werror #-} -- this would work for the below
 
 toDigitsRev :: Integer -> [Integer]
 -- Determine the smallest digit of a by modulo 10 the number and add the result
@@ -56,10 +39,9 @@ validate a | a > 0 = a `mod` 10 == 0
 cardNum :: [Integer]
 cardNum = [4012888888881881,
            4012888888881812,
-           3342903840234856,
-           8000239423408341,
-           9863408925602002]
+           5594589764218858,
+           1234567898765432]
 
 main :: IO ()
-main = 
+main = do
     print ([validate (sumDigits (doubleEveryOther (toDigits x))) | x <- cardNum])
